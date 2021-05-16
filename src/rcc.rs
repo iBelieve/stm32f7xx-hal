@@ -521,6 +521,8 @@ impl CFGR {
             hclk: Hertz(hclk),
             pclk1: Hertz(pclk1),
             pclk2: Hertz(pclk2),
+            ppre1: config.ppre1,
+            ppre2: config.ppre2,
             sysclk: Hertz(sysclk),
             timclk1: Hertz(timclk1),
             timclk2: Hertz(timclk2),
@@ -787,6 +789,8 @@ pub struct Clocks {
     hclk: Hertz,
     pclk1: Hertz,
     pclk2: Hertz,
+    ppre1: u8,
+    ppre2: u8,
     sysclk: Hertz,
     timclk1: Hertz,
     timclk2: Hertz,
@@ -808,6 +812,16 @@ impl Clocks {
     /// Returns the frequency of the APB2
     pub fn pclk2(&self) -> Hertz {
         self.pclk2
+    }
+
+    /// Returns the prescaler of the APB1
+    pub fn ppre1(&self) -> u8 {
+        self.ppre1
+    }
+
+    /// Returns the prescaler of the APB2
+    pub fn ppre2(&self) -> u8 {
+        self.ppre2
     }
 
     /// Returns the system (core) frequency

@@ -185,3 +185,239 @@ hal! {
     TIM10: (tim10, tim10en, tim10rst, APB2, timclk2),
     TIM11: (tim11, tim11en, tim11rst, APB2, timclk2),
 }
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpioa::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpiob::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpioc::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpiod::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpioe::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpiof::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpioh::*;
+
+#[cfg(any(
+    feature = "stm32f722",
+    feature = "stm32f723",
+    feature = "stm32f730",
+    feature = "stm32f732",
+    feature = "stm32f733",
+    feature = "stm32f745",
+    feature = "stm32f746",
+    feature = "stm32f756",
+    feature = "stm32f765",
+    feature = "stm32f767",
+    feature = "stm32f769",
+    feature = "stm32f777",
+    feature = "stm32f778",
+    feature = "stm32f779",
+))]
+use crate::gpio::gpioi::*;
+
+use crate::gpio::{Alternate, AF1, AF2, AF3};
+
+// Output channels marker traits
+pub trait PinC1<TIM> {}
+pub trait PinC2<TIM> {}
+pub trait PinC3<TIM> {}
+pub trait PinC4<TIM> {}
+
+macro_rules! channel_impl {
+    ( $( $TIM:ident, $PINC:ident, $PINX:ident, $MODE:ident<$AF:ident>; )+ ) => {
+        $(
+            impl $PINC<$TIM> for $PINX<$MODE<$AF>> {}
+        )+
+    };
+}
+
+channel_impl!(
+    TIM1, PinC1, PA8, Alternate<AF1>;
+    TIM1, PinC2, PA9, Alternate<AF1>;
+    TIM1, PinC3, PA10, Alternate<AF1>;
+    TIM1, PinC4, PA11, Alternate<AF1>;
+
+    TIM1, PinC1, PE9, Alternate<AF1>;
+    TIM1, PinC2, PE11, Alternate<AF1>;
+    TIM1, PinC3, PE13, Alternate<AF1>;
+    TIM1, PinC4, PE14, Alternate<AF1>;
+
+    TIM2, PinC1, PA0, Alternate<AF1>;
+    TIM2, PinC2, PA1, Alternate<AF1>;
+    TIM2, PinC3, PA2, Alternate<AF1>;
+    TIM2, PinC4, PA3, Alternate<AF1>;
+
+    TIM2, PinC1, PA5, Alternate<AF1>;
+    TIM2, PinC1, PA15, Alternate<AF1>;
+
+    TIM2, PinC2, PB3, Alternate<AF1>;
+    TIM2, PinC3, PB10, Alternate<AF1>;
+    TIM2, PinC4, PB11, Alternate<AF1>;
+
+    TIM3, PinC1, PA6, Alternate<AF2>;
+    TIM3, PinC2, PA7, Alternate<AF2>;
+    TIM3, PinC3, PB0, Alternate<AF2>;
+    TIM3, PinC4, PB1, Alternate<AF2>;
+
+    TIM3, PinC1, PB4, Alternate<AF2>;
+    TIM3, PinC2, PB5, Alternate<AF2>;
+
+    TIM3, PinC1, PC6, Alternate<AF2>;
+    TIM3, PinC2, PC7, Alternate<AF2>;
+    TIM3, PinC3, PC8, Alternate<AF2>;
+    TIM3, PinC4, PC9, Alternate<AF2>;
+
+    TIM4, PinC1, PB6, Alternate<AF2>;
+    TIM4, PinC2, PB7, Alternate<AF2>;
+    TIM4, PinC3, PB8, Alternate<AF2>;
+    TIM4, PinC4, PB9, Alternate<AF2>;
+
+    TIM4, PinC1, PD12, Alternate<AF2>;
+    TIM4, PinC2, PD13, Alternate<AF2>;
+    TIM4, PinC3, PD14, Alternate<AF2>;
+    TIM4, PinC4, PD15, Alternate<AF2>;
+
+    TIM5, PinC1, PA0, Alternate<AF2>;
+    TIM5, PinC2, PA1, Alternate<AF2>;
+    TIM5, PinC3, PA2, Alternate<AF2>;
+    TIM5, PinC4, PA3, Alternate<AF2>;
+
+    TIM5, PinC1, PH10, Alternate<AF2>;
+    TIM5, PinC2, PH11, Alternate<AF2>;
+    TIM5, PinC3, PH12, Alternate<AF2>;
+    TIM5, PinC4, PI0, Alternate<AF2>;
+
+    TIM8, PinC1, PC6, Alternate<AF3>;
+    TIM8, PinC2, PC7, Alternate<AF3>;
+    TIM8, PinC3, PC8, Alternate<AF3>;
+    TIM8, PinC4, PC9, Alternate<AF3>;
+
+    TIM8, PinC1, PI5, Alternate<AF3>;
+    TIM8, PinC2, PI6, Alternate<AF3>;
+    TIM8, PinC3, PI7, Alternate<AF3>;
+    TIM8, PinC4, PI2, Alternate<AF3>;
+
+    TIM9, PinC1, PE5, Alternate<AF3>;
+    TIM9, PinC2, PE6, Alternate<AF3>;
+
+    TIM10, PinC1, PB8, Alternate<AF3>;
+    TIM10, PinC1, PF6, Alternate<AF3>;
+
+    TIM11, PinC1, PB9, Alternate<AF3>;
+    TIM11, PinC1, PF7, Alternate<AF3>;
+);
